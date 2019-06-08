@@ -135,7 +135,7 @@ namespace ServerManger
         }
         private void btn_change_port_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_port.Text) || txt_port.Text.Length<2)
+            if (string.IsNullOrEmpty(txt_port.Text) || txt_port.Text.Length < 2)
             {
                 MessageBox.Show(" مقدار پورت به صورت صحیح وارد نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -144,15 +144,9 @@ namespace ServerManger
             MessageBox.Show("با موفقیت انجام شد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void txt_port_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void txt_port_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                                                                (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
             }

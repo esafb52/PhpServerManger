@@ -31,8 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbl_state = new System.Windows.Forms.Label();
+            this.pictureBox_conect_state = new System.Windows.Forms.PictureBox();
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_start_server = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_opne_link = new System.Windows.Forms.Button();
             this.txt_ip = new System.Windows.Forms.TextBox();
@@ -40,13 +43,10 @@
             this.btn_change_port = new System.Windows.Forms.Button();
             this.txt_port = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox_conect_state = new System.Windows.Forms.PictureBox();
-            this.lbl_state = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,7 +57,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.panel1.Size = new System.Drawing.Size(499, 220);
+            this.panel1.Size = new System.Drawing.Size(434, 220);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
@@ -72,14 +72,33 @@
             this.groupBox3.Controls.Add(this.txt_ip);
             this.groupBox3.Location = new System.Drawing.Point(14, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(474, 133);
+            this.groupBox3.Size = new System.Drawing.Size(414, 133);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "راه اندازی سرور ";
             // 
+            // lbl_state
+            // 
+            this.lbl_state.AutoSize = true;
+            this.lbl_state.Location = new System.Drawing.Point(16, 33);
+            this.lbl_state.Name = "lbl_state";
+            this.lbl_state.Size = new System.Drawing.Size(45, 14);
+            this.lbl_state.TabIndex = 9;
+            this.lbl_state.Text = "خاموش";
+            // 
+            // pictureBox_conect_state
+            // 
+            this.pictureBox_conect_state.Image = global::ServerManger.Properties.Resources.disconnectd;
+            this.pictureBox_conect_state.Location = new System.Drawing.Point(2, 58);
+            this.pictureBox_conect_state.Name = "pictureBox_conect_state";
+            this.pictureBox_conect_state.Size = new System.Drawing.Size(75, 72);
+            this.pictureBox_conect_state.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_conect_state.TabIndex = 8;
+            this.pictureBox_conect_state.TabStop = false;
+            // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(166, 82);
+            this.btn_close.Location = new System.Drawing.Point(108, 73);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(92, 30);
             this.btn_close.TabIndex = 5;
@@ -89,7 +108,7 @@
             // 
             // btn_start_server
             // 
-            this.btn_start_server.Location = new System.Drawing.Point(364, 82);
+            this.btn_start_server.Location = new System.Drawing.Point(304, 73);
             this.btn_start_server.Name = "btn_start_server";
             this.btn_start_server.Size = new System.Drawing.Size(92, 30);
             this.btn_start_server.TabIndex = 2;
@@ -97,10 +116,19 @@
             this.btn_start_server.UseVisualStyleBackColor = true;
             this.btn_start_server.Click += new System.EventHandler(this.btn_start_server_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(67, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 14);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "وضعیت سرور : ";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(386, 33);
+            this.label1.Location = new System.Drawing.Point(324, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 14);
             this.label1.TabIndex = 0;
@@ -108,7 +136,7 @@
             // 
             // btn_opne_link
             // 
-            this.btn_opne_link.Location = new System.Drawing.Point(265, 82);
+            this.btn_opne_link.Location = new System.Drawing.Point(206, 73);
             this.btn_opne_link.Name = "btn_opne_link";
             this.btn_opne_link.Size = new System.Drawing.Size(92, 30);
             this.btn_opne_link.TabIndex = 7;
@@ -119,9 +147,9 @@
             // txt_ip
             // 
             this.txt_ip.Enabled = false;
-            this.txt_ip.Location = new System.Drawing.Point(204, 30);
+            this.txt_ip.Location = new System.Drawing.Point(173, 30);
             this.txt_ip.Name = "txt_ip";
-            this.txt_ip.Size = new System.Drawing.Size(178, 22);
+            this.txt_ip.Size = new System.Drawing.Size(145, 22);
             this.txt_ip.TabIndex = 6;
             this.txt_ip.Text = "192.168.1.1";
             this.txt_ip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -133,14 +161,14 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(14, 141);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(474, 68);
+            this.groupBox1.Size = new System.Drawing.Size(414, 68);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "تنظیمات پورت ";
             // 
             // btn_change_port
             // 
-            this.btn_change_port.Location = new System.Drawing.Point(166, 24);
+            this.btn_change_port.Location = new System.Drawing.Point(173, 21);
             this.btn_change_port.Name = "btn_change_port";
             this.btn_change_port.Size = new System.Drawing.Size(92, 30);
             this.btn_change_port.TabIndex = 8;
@@ -150,10 +178,10 @@
             // 
             // txt_port
             // 
-            this.txt_port.Location = new System.Drawing.Point(265, 29);
+            this.txt_port.Location = new System.Drawing.Point(273, 26);
             this.txt_port.MaxLength = 4;
             this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(115, 22);
+            this.txt_port.Size = new System.Drawing.Size(66, 22);
             this.txt_port.TabIndex = 3;
             this.txt_port.Text = "80";
             this.txt_port.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -162,46 +190,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(386, 32);
+            this.label2.Location = new System.Drawing.Point(345, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 14);
             this.label2.TabIndex = 4;
             this.label2.Text = "پورت : ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(109, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 14);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "وضعیت سرور : ";
-            // 
-            // pictureBox_conect_state
-            // 
-            this.pictureBox_conect_state.Image = global::ServerManger.Properties.Resources.disconnectd;
-            this.pictureBox_conect_state.Location = new System.Drawing.Point(25, 55);
-            this.pictureBox_conect_state.Name = "pictureBox_conect_state";
-            this.pictureBox_conect_state.Size = new System.Drawing.Size(75, 72);
-            this.pictureBox_conect_state.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_conect_state.TabIndex = 8;
-            this.pictureBox_conect_state.TabStop = false;
-            // 
-            // lbl_state
-            // 
-            this.lbl_state.AutoSize = true;
-            this.lbl_state.Location = new System.Drawing.Point(58, 33);
-            this.lbl_state.Name = "lbl_state";
-            this.lbl_state.Size = new System.Drawing.Size(45, 14);
-            this.lbl_state.TabIndex = 9;
-            this.lbl_state.Text = "خاموش";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(216)))));
-            this.ClientSize = new System.Drawing.Size(499, 220);
+            this.ClientSize = new System.Drawing.Size(434, 220);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -216,9 +216,9 @@
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).EndInit();
             this.ResumeLayout(false);
 
         }
