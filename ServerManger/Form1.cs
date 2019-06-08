@@ -40,14 +40,34 @@ namespace ServerManger
             startInfo.Arguments = @"/c php\m-php.exe -S 0.0.0.0:80";
             process.StartInfo = startInfo;
             process.Start();
-           
-                        
+           // start_server_2();
+          
 
+        }
+
+
+
+        public void start_server_2()
+        {
+            //string goloba_app_path = "Global.Path\\mikhmon";
+            //string a = goloba_app_path + @"\php\m-php.exe - S 0.0.0.0:";
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.WindowStyle = ProcessWindowStyle.Normal;
+            startInfo.FileName = "cmd.exe";
+            //startInfo.Arguments = @"/c Global.Path\mikhmon\php\m-php.exe -S 0.0.0.0:80";
+            //process.StartInfo = startInfo;
+            //process.Start();
+        
+            Environment.CurrentDirectory = Environment.CurrentDirectory + "\\mikhmon";
+            string cmd =  "\\php\\m-php.exe -S 0.0.0.0:80";       
+            startInfo.Arguments = $"/c " + cmd;
+            process.Start();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            Process.Start("CMD.exe", "php\\stop-server.bat");
+            Process.Start("CMD.exe", "/c php\\stop-server.bat");
         }
 
         private void btn_opne_link_Click(object sender, EventArgs e)
