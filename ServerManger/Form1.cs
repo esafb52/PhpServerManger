@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
+
+
 namespace ServerManger
 {
     public partial class Form1 : Form
@@ -32,42 +34,26 @@ namespace ServerManger
         }
         private void btn_start_server_Click(object sender, EventArgs e)
         {
-
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WindowStyle = ProcessWindowStyle.Normal;
-            startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = @"/c php\m-php.exe -S 0.0.0.0:80";
-            process.StartInfo = startInfo;
-            process.Start();
-           // start_server_2();
-          
-
+            string start_server = @"/c php\m-php.exe -S 0.0.0.0:80";
+            RunCmdCommnd(start_server);
         }
 
-
-
-        public void start_server_2()
+               
+        public void RunCmdCommnd(string cmd)
         {
-            //string goloba_app_path = "Global.Path\\mikhmon";
-            //string a = goloba_app_path + @"\php\m-php.exe - S 0.0.0.0:";
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.WindowStyle = ProcessWindowStyle.Normal;
             startInfo.FileName = "cmd.exe";
-            //startInfo.Arguments = @"/c Global.Path\mikhmon\php\m-php.exe -S 0.0.0.0:80";
-            //process.StartInfo = startInfo;
-            //process.Start();
-        
-            Environment.CurrentDirectory = Environment.CurrentDirectory + "\\mikhmon";
-            string cmd =  "\\php\\m-php.exe -S 0.0.0.0:80";       
-            startInfo.Arguments = $"/c " + cmd;
+            startInfo.Arguments = cmd;
+            process.StartInfo = startInfo;
             process.Start();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            Process.Start("CMD.exe", "/c php\\stop-server.bat");
+            string stop_server = "/c php\\stop-server.bat";
+            RunCmdCommnd(stop_server);
         }
 
         private void btn_opne_link_Click(object sender, EventArgs e)

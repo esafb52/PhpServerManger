@@ -37,6 +37,7 @@
             this.btn_start_server = new System.Windows.Forms.Button();
             this.txt_port = new System.Windows.Forms.TextBox();
             this.btn_opne_link = new System.Windows.Forms.Button();
+            this.btn_change_port = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_change_port);
             this.groupBox2.Controls.Add(this.btn_opne_link);
             this.groupBox2.Controls.Add(this.btn_close);
             this.groupBox2.Controls.Add(this.label1);
@@ -70,11 +72,11 @@
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(50, 103);
+            this.btn_close.Location = new System.Drawing.Point(255, 136);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(92, 33);
             this.btn_close.TabIndex = 5;
-            this.btn_close.Text = "خروج";
+            this.btn_close.Text = "توقف سرور";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
@@ -106,31 +108,40 @@
             // 
             // btn_start_server
             // 
-            this.btn_start_server.Location = new System.Drawing.Point(167, 103);
+            this.btn_start_server.Location = new System.Drawing.Point(353, 136);
             this.btn_start_server.Name = "btn_start_server";
             this.btn_start_server.Size = new System.Drawing.Size(92, 33);
             this.btn_start_server.TabIndex = 2;
-            this.btn_start_server.Text = "اتصال";
+            this.btn_start_server.Text = "راه اندازی سرور";
             this.btn_start_server.UseVisualStyleBackColor = true;
             this.btn_start_server.Click += new System.EventHandler(this.btn_start_server_Click);
             // 
             // txt_port
             // 
-            this.txt_port.Location = new System.Drawing.Point(210, 64);
+            this.txt_port.Location = new System.Drawing.Point(107, 64);
             this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(49, 20);
+            this.txt_port.Size = new System.Drawing.Size(152, 20);
             this.txt_port.TabIndex = 3;
             this.txt_port.Text = "80";
             // 
             // btn_opne_link
             // 
-            this.btn_opne_link.Location = new System.Drawing.Point(388, 152);
+            this.btn_opne_link.Location = new System.Drawing.Point(154, 137);
             this.btn_opne_link.Name = "btn_opne_link";
-            this.btn_opne_link.Size = new System.Drawing.Size(85, 30);
+            this.btn_opne_link.Size = new System.Drawing.Size(85, 32);
             this.btn_opne_link.TabIndex = 7;
             this.btn_opne_link.Text = "بازکردن برنامه";
             this.btn_opne_link.UseVisualStyleBackColor = true;
             this.btn_opne_link.Click += new System.EventHandler(this.btn_opne_link_Click);
+            // 
+            // btn_change_port
+            // 
+            this.btn_change_port.Location = new System.Drawing.Point(15, 59);
+            this.btn_change_port.Name = "btn_change_port";
+            this.btn_change_port.Size = new System.Drawing.Size(77, 29);
+            this.btn_change_port.TabIndex = 8;
+            this.btn_change_port.Text = "تغییر پورت";
+            this.btn_change_port.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -159,6 +170,7 @@
         private System.Windows.Forms.Button btn_start_server;
         private System.Windows.Forms.TextBox txt_port;
         private System.Windows.Forms.Button btn_opne_link;
+        private System.Windows.Forms.Button btn_change_port;
     }
 }
 
