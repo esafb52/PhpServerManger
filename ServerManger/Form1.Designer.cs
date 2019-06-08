@@ -1,6 +1,6 @@
 ﻿namespace ServerManger
 {
-    partial class Form1
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbl_state = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(108, 73);
+            this.btn_close.Location = new System.Drawing.Point(117, 73);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(92, 30);
             this.btn_close.TabIndex = 5;
@@ -108,7 +108,7 @@
             // 
             // btn_start_server
             // 
-            this.btn_start_server.Location = new System.Drawing.Point(304, 73);
+            this.btn_start_server.Location = new System.Drawing.Point(313, 73);
             this.btn_start_server.Name = "btn_start_server";
             this.btn_start_server.Size = new System.Drawing.Size(92, 30);
             this.btn_start_server.TabIndex = 2;
@@ -136,7 +136,7 @@
             // 
             // btn_opne_link
             // 
-            this.btn_opne_link.Location = new System.Drawing.Point(206, 73);
+            this.btn_opne_link.Location = new System.Drawing.Point(215, 73);
             this.btn_opne_link.Name = "btn_opne_link";
             this.btn_opne_link.Size = new System.Drawing.Size(92, 30);
             this.btn_opne_link.TabIndex = 7;
@@ -196,7 +196,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "پورت : ";
             // 
-            // Form1
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,7 +207,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FrmMain";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

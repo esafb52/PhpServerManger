@@ -8,10 +8,10 @@ using System.Text.RegularExpressions;
 
 namespace ServerManger
 {
-    public partial class Form1 : Form
+    public partial class FrmMain : Form
     {
         public static bool IsServerRuning;
-        public Form1()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -46,21 +46,31 @@ namespace ServerManger
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(" : خطایی رخ داد" + exception.Message, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
         public static string GetLocalIPAddress()
         {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
+            try
             {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (var ip in host.AddressList)
                 {
-                    return "http://" + ip.ToString();
+                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        return "http://" + ip.ToString();
+                    }
+
                 }
+                return "";
             }
-            throw new Exception("No network IPv4 address in the system!");
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(" : خطایی رخ داد" + exception.Message, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
         }
         private void btn_start_server_Click(object sender, EventArgs e)
         {
@@ -99,7 +109,7 @@ namespace ServerManger
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(" : خطایی رخ داد" + exception.Message, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -143,7 +153,6 @@ namespace ServerManger
             WritePortToPortFile(txt_port.Text);
             MessageBox.Show("با موفقیت انجام شد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void txt_port_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
