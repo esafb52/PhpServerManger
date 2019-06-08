@@ -63,6 +63,26 @@ namespace ServerManger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _012_connection_connect_512 {
+            get {
+                object obj = ResourceManager.GetObject("012_connection_connect-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _013_disconnect_connection_512 {
+            get {
+                object obj = ResourceManager.GetObject("013_disconnect_connection-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap connectd {
             get {
                 object obj = ResourceManager.GetObject("connectd", resourceCulture);

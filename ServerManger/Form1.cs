@@ -15,11 +15,10 @@ namespace ServerManger
         {
             InitializeComponent();
         }
-
         public string ReadPortFromFile()
         {
             string prot_file_path = @"php\port.ini";
-            string resultString = "";
+            string resultString = "80";
             if (File.Exists(prot_file_path))
             {
                 string[] file_content = File.ReadAllLines(prot_file_path);
@@ -81,18 +80,28 @@ namespace ServerManger
                     MessageBox.Show("پورت مشخص نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (!Directory.Exists("hormozmik.ir"))
+                {
+                    MessageBox.Show("تنظیمات سرور یافت نشد ", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+                if (!Directory.Exists("php"))
+                {
+                    MessageBox.Show("تنظیمات سرور یافت نشد ", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
                 string start_server = $"/c php\\m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
                 RunCmdCommnd(start_server);
-                pictureBox_conect_state.Image = Properties.Resources.connectd;
-                lbl_state.Text = "متصل ";
+                pictureBox_conect_state.Image = Properties.Resources._012_connection_connect_512;
+                btn_start_server.Text = "توقف سرور";
                 IsServerRuning = true;
             }
             else
             {
-                MessageBox.Show("سرور در حال اجرا است", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string stop_server = "/c php\\stop-server.bat";
+                RunCmdCommnd(stop_server);
+                pictureBox_conect_state.Image = Properties.Resources._013_disconnect_connection_512;
+                btn_start_server.Text = "راه اندازی سرور";
+                IsServerRuning = false;
             }
-
-
         }
         public void RunCmdCommnd(string cmd)
         {
@@ -114,14 +123,13 @@ namespace ServerManger
 
 
         }
-        private void btn_close_Click(object sender, EventArgs e)
+        private void btn_stop_server_Click(object sender, EventArgs e)
         {
             if (IsServerRuning)
             {
                 string stop_server = "/c php\\stop-server.bat";
                 RunCmdCommnd(stop_server);
-                pictureBox_conect_state.Image = Properties.Resources.disconnectd;
-                lbl_state.Text = "خاموش";
+                pictureBox_conect_state.Image = Properties.Resources._013_disconnect_connection_512;
                 IsServerRuning = false;
             }
             else
@@ -137,10 +145,11 @@ namespace ServerManger
             {
                 String url = txt_ip.Text + ":" + txt_port.Text;
                 Process.Start(url);
+                this.WindowState = FormWindowState.Minimized;
             }
             else
             {
-                MessageBox.Show("سرور متوقف شده است ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لطفا ابتدا سرور را راه اندازی کنید ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void btn_change_port_Click(object sender, EventArgs e)
@@ -159,6 +168,12 @@ namespace ServerManger
             {
                 e.Handled = true;
             }
+        }
+        private void sermangernotificon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+                WindowState = FormWindowState.Normal;
+            this.Activate();
         }
     }
 }
