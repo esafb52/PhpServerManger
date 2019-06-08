@@ -3,21 +3,51 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ServerManger
 {
     public partial class Form1 : Form
     {
+        public static bool IsServerRuning;
         public Form1()
         {
             InitializeComponent();
         }
 
+        public string ReadPortFromFile()
+        {
+            string prot_file_path = @"php\port.ini";
+            string resultString = "";
+            if (File.Exists(prot_file_path))
+            {
+                string[] file_content = File.ReadAllLines(prot_file_path);
+                resultString = Regex.Match(file_content[1], @"\d+").Value;
+            }
+            return resultString;
+        }
+        public static void WritePortToPortFile(string port)
+        {
+            string new_port = $"port={port}";
+            string prot_file_path = @"php\port.ini";
+            if (!File.Exists(prot_file_path))
+                MessageBox.Show("فایل مورد نظر وحود ندارد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            string[] arrLine = File.ReadAllLines(prot_file_path);
+            arrLine[1] = port;
+            File.WriteAllLines(prot_file_path, arrLine);
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            txt_ip.Text = GetLocalIPAddress();
+            try
+            {
+                txt_ip.Text = GetLocalIPAddress();
+                txt_port.Text = ReadPortFromFile();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
 
         }
         public static string GetLocalIPAddress()
@@ -34,32 +64,74 @@ namespace ServerManger
         }
         private void btn_start_server_Click(object sender, EventArgs e)
         {
-            string start_server = @"/c php\m-php.exe -S 0.0.0.0:80";
-            RunCmdCommnd(start_server);
-        }
+            if (!IsServerRuning)
+            {
+                string start_server = $"/c php\\m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
+                RunCmdCommnd(start_server);
+                pictureBox_conect_state.Image = Properties.Resources.connectd;
+                lbl_state.Text = "متصل ";
+                IsServerRuning = true;
+            }
+            else
+            {
+                MessageBox.Show("سرور در حال اجرا است", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
-               
+
+        }
         public void RunCmdCommnd(string cmd)
         {
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WindowStyle = ProcessWindowStyle.Normal;
-            startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = cmd;
-            process.StartInfo = startInfo;
-            process.Start();
-        }
+            try
+            {
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.FileName = "cmd.exe";
+                startInfo.Arguments = cmd;
+                process.StartInfo = startInfo;
+                process.Start();
 
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
-            string stop_server = "/c php\\stop-server.bat";
-            RunCmdCommnd(stop_server);
-        }
+            if (IsServerRuning)
+            {
+                string stop_server = "/c php\\stop-server.bat";
+                RunCmdCommnd(stop_server);
+                pictureBox_conect_state.Image = Properties.Resources.disconnectd;
+                lbl_state.Text = "خاموش";
+                IsServerRuning = false;
+            }
+            else
+            {
+                MessageBox.Show("لطفا سرور را راه اندازی کنید ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
+
+        }
         private void btn_opne_link_Click(object sender, EventArgs e)
         {
-            String url = txt_ip.Text + ":" + txt_port.Text;
-            Process.Start(url);
+            if (IsServerRuning)
+            {
+                String url = txt_ip.Text + ":" + txt_port.Text;
+                Process.Start(url);
+            }
+            else
+            {
+                MessageBox.Show("سرور متوقف شده است ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btn_change_port_Click(object sender, EventArgs e)
+        {
+            WritePortToPortFile(txt_port.Text);
+            MessageBox.Show("با موفقیت انجام شد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
