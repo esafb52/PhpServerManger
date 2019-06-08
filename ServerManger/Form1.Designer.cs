@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_close = new System.Windows.Forms.Button();
@@ -150,11 +151,13 @@
             // txt_port
             // 
             this.txt_port.Location = new System.Drawing.Point(265, 29);
+            this.txt_port.MaxLength = 4;
             this.txt_port.Name = "txt_port";
             this.txt_port.Size = new System.Drawing.Size(115, 22);
             this.txt_port.TabIndex = 3;
             this.txt_port.Text = "80";
             this.txt_port.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_port_KeyPress);
             // 
             // label2
             // 
@@ -202,6 +205,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

@@ -66,6 +66,11 @@ namespace ServerManger
         {
             if (!IsServerRuning)
             {
+                if (string.IsNullOrEmpty(txt_port.Text))
+                {
+                    MessageBox.Show("پورت مشخص نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 string start_server = $"/c php\\m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
                 RunCmdCommnd(start_server);
                 pictureBox_conect_state.Image = Properties.Resources.connectd;
@@ -130,8 +135,27 @@ namespace ServerManger
         }
         private void btn_change_port_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txt_port.Text) || txt_port.Text.Length<2)
+            {
+                MessageBox.Show(" مقدار پورت به صورت صحیح وارد نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             WritePortToPortFile(txt_port.Text);
             MessageBox.Show("با موفقیت انجام شد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void txt_port_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txt_port_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                                                                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
