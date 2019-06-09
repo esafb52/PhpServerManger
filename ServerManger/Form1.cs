@@ -11,6 +11,7 @@ namespace ServerManger
     public partial class FrmMain : Form
     {
         public static bool IsServerRuning;
+        public static string app_folder_path;
         public FrmMain()
         {
             InitializeComponent();
@@ -31,12 +32,16 @@ namespace ServerManger
             string new_port = $"port={port}";
             string prot_file_path = @"php\port.ini";
             if (!File.Exists(prot_file_path))
+            {
                 MessageBox.Show("فایل مورد نظر وحود ندارد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
             string[] arrLine = File.ReadAllLines(prot_file_path);
             arrLine[1] = port;
             File.WriteAllLines(prot_file_path, arrLine);
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
             try
             {
@@ -80,26 +85,33 @@ namespace ServerManger
                     MessageBox.Show("پورت مشخص نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (!Directory.Exists("hormozmik.ir"))
+                if (!Directory.Exists("hormozmik"))
                 {
-                    MessageBox.Show("تنظیمات سرور یافت نشد ", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                    MessageBox.Show("تنظیمات سرور یافت نشد ", "کد 98", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
                 }
                 if (!Directory.Exists("php"))
                 {
-                    MessageBox.Show("تنظیمات سرور یافت نشد ", "", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                    MessageBox.Show("تنظیمات سرور یافت نشد ", "کد 97", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
                 }
-                string start_server = $"/c php\\m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
+                app_folder_path = Environment.CurrentDirectory;
+                string php_path = app_folder_path + "\\php\\";
+                Environment.CurrentDirectory = Environment.CurrentDirectory + "\\hormozmik";
+                string start_server = $"/c {php_path}m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
                 RunCmdCommnd(start_server);
                 pictureBox_conect_state.Image = Properties.Resources._012_connection_connect_512;
                 btn_start_server.Text = "توقف سرور";
+                lbl_state.Text = "متصل";
                 IsServerRuning = true;
+
             }
             else
             {
+                Environment.CurrentDirectory = app_folder_path;
                 string stop_server = "/c php\\stop-server.bat";
                 RunCmdCommnd(stop_server);
                 pictureBox_conect_state.Image = Properties.Resources._013_disconnect_connection_512;
                 btn_start_server.Text = "راه اندازی سرور";
+                lbl_state.Text = "غیر متصل";
                 IsServerRuning = false;
             }
         }
@@ -159,6 +171,11 @@ namespace ServerManger
                 MessageBox.Show(" مقدار پورت به صورت صحیح وارد نشده است  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (IsServerRuning)
+            {
+                MessageBox.Show(" ابتدا سرور را متوقف نمایید  ", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             WritePortToPortFile(txt_port.Text);
             MessageBox.Show("با موفقیت انجام شد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -173,7 +190,7 @@ namespace ServerManger
         {
             if (WindowState == FormWindowState.Minimized)
                 WindowState = FormWindowState.Normal;
-            this.Activate();
+            Activate();
         }
     }
 }
