@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox_conect_state = new System.Windows.Forms.PictureBox();
             this.lbl_state = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -44,12 +45,11 @@
             this.txt_port = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.sermangernotificon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.pictureBox_conect_state = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,6 +75,16 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "وضعیت اتصال";
+            // 
+            // pictureBox_conect_state
+            // 
+            this.pictureBox_conect_state.Image = global::ServerManger.Properties.Resources._013_disconnect_connection_512;
+            this.pictureBox_conect_state.Location = new System.Drawing.Point(15, 14);
+            this.pictureBox_conect_state.Name = "pictureBox_conect_state";
+            this.pictureBox_conect_state.Size = new System.Drawing.Size(92, 65);
+            this.pictureBox_conect_state.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_conect_state.TabIndex = 8;
+            this.pictureBox_conect_state.TabStop = false;
             // 
             // lbl_state
             // 
@@ -198,16 +208,6 @@
             this.sermangernotificon.Visible = true;
             this.sermangernotificon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.sermangernotificon_MouseDoubleClick);
             // 
-            // pictureBox_conect_state
-            // 
-            this.pictureBox_conect_state.Image = global::ServerManger.Properties.Resources._013_disconnect_connection_512;
-            this.pictureBox_conect_state.Location = new System.Drawing.Point(15, 14);
-            this.pictureBox_conect_state.Name = "pictureBox_conect_state";
-            this.pictureBox_conect_state.Size = new System.Drawing.Size(92, 65);
-            this.pictureBox_conect_state.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_conect_state.TabIndex = 8;
-            this.pictureBox_conect_state.TabStop = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -224,15 +224,16 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "هرمز میکروتیک";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_conect_state)).EndInit();
             this.ResumeLayout(false);
 
         }

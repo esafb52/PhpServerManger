@@ -192,5 +192,13 @@ namespace ServerManger
                 WindowState = FormWindowState.Normal;
             Activate();
         }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (IsServerRuning)
+            {
+                btn_stop_server_Click(null, null);
+            }
+        }
     }
 }
