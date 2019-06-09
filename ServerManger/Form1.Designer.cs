@@ -221,6 +221,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "هرمز میکروتیک";
             this.Load += new System.EventHandler(this.FrmMain_Load);
