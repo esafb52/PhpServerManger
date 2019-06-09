@@ -38,7 +38,7 @@ namespace ServerManger
 
             }
             string[] arrLine = File.ReadAllLines(prot_file_path);
-            arrLine[1] = port;
+            arrLine[1] = new_port;
             File.WriteAllLines(prot_file_path, arrLine);
         }
         private void FrmMain_Load(object sender, EventArgs e)
