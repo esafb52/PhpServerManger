@@ -115,10 +115,26 @@ namespace ServerManger
                 IsServerRuning = false;
             }
         }
+        public string FixSpaceCharInCmd(string cmd)
+        {
+            if (cmd.Contains("Program Files (x86)"))
+            {
+                cmd.Replace("Program Files (x86)", "PROGRA~2");
+                return cmd;
+            }
+            if (cmd.Contains("Program Files (x86)"))
+            {
+                cmd.Replace("Program Files", "PROGRA~1");
+                return cmd;
+            }
+            else
+                return cmd;
+        }
         public void RunCmdCommnd(string cmd)
         {
             try
             {
+                string final_cmd = FixSpaceCharInCmd(cmd);
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -197,7 +213,8 @@ namespace ServerManger
         {
             if (IsServerRuning)
             {
-                btn_stop_server_Click(null, null);
+                string stop_server = "/c php\\stop-server.bat";
+                RunCmdCommnd(stop_server);
             }
         }
     }
