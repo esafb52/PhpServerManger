@@ -95,8 +95,9 @@ namespace ServerManger
                 }
                 app_folder_path = Environment.CurrentDirectory;
                 string php_path = app_folder_path + "\\php\\";
+                string final_php_path = FixSpaceCharInCmd(php_path);
                 Environment.CurrentDirectory = Environment.CurrentDirectory + "\\hormozmik";
-                string start_server = $"/c {php_path}m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
+                string start_server = $"/c {final_php_path}m-php.exe -S 0.0.0.0:{txt_port.Text.Trim()}";
                 RunCmdCommnd(start_server);
                 pictureBox_conect_state.Image = Properties.Resources._012_connection_connect_512;
                 btn_start_server.Text = "توقف سرور";
@@ -117,15 +118,16 @@ namespace ServerManger
         }
         public string FixSpaceCharInCmd(string cmd)
         {
-            if (cmd.Contains("Program Files (x86)"))
+            string res = "";
+            if (cmd.ToLower().Contains(@"C:\Program Files (x86)\".ToLower()))
             {
-                cmd.Replace("Program Files (x86)", "PROGRA~2");
-                return cmd;
+              res= cmd.Replace(@"\Program Files (x86)\", @"\PROGRA~2\");
+                return res;
             }
-            if (cmd.Contains("Program Files (x86)"))
+            if (cmd.ToLower().Contains(@"C:\Program Files\".ToLower()))
             {
-                cmd.Replace("Program Files", "PROGRA~1");
-                return cmd;
+               res= cmd.Replace(@"\Program Files\", @"\PROGRA~1\");
+                return res;
             }
             else
                 return cmd;
@@ -134,12 +136,11 @@ namespace ServerManger
         {
             try
             {
-                string final_cmd = FixSpaceCharInCmd(cmd);
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = final_cmd;
+                startInfo.Arguments = cmd;
                 process.StartInfo = startInfo;
                 process.Start();
 

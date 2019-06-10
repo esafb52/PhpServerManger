@@ -22,6 +22,7 @@ namespace ServerManger
             }
             else
             {
+                
                 MessageBox.Show(@"در حال حاضر یک نمونه از برنامه در حال اجرا می باشد", @"توجه", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Application.ExitThread();
             }
