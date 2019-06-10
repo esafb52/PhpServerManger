@@ -139,7 +139,7 @@ namespace ServerManger
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = cmd;
+                startInfo.Arguments = final_cmd;
                 process.StartInfo = startInfo;
                 process.Start();
 
