@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.IO;
@@ -10,6 +11,7 @@ namespace ServerManger
 {
     public partial class FrmMain : Form
     {
+        public static event NetworkAddressChangedEventHandler NetworkAddressChanged;
         public static bool IsServerRuning;
         public static string app_folder_path;
         public FrmMain()
@@ -45,6 +47,7 @@ namespace ServerManger
         {
             try
             {
+                NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
                 txt_ip.Text = GetLocalIPAddress();
                 txt_port.Text = ReadPortFromFile();
             }
@@ -54,6 +57,12 @@ namespace ServerManger
             }
 
         }
+
+        private void NetworkChange_NetworkAddressChanged(object sender, EventArgs e)
+        {
+            BeginInvoke((MethodInvoker)delegate { txt_ip.Text = GetLocalIPAddress(); });
+        }
+
         public static string GetLocalIPAddress()
         {
             try
@@ -121,12 +130,12 @@ namespace ServerManger
             string res = "";
             if (cmd.ToLower().Contains(@"C:\Program Files (x86)\".ToLower()))
             {
-              res= cmd.Replace(@"\Program Files (x86)\", @"\PROGRA~2\");
+                res = cmd.Replace(@"\Program Files (x86)\", @"\PROGRA~2\");
                 return res;
             }
             if (cmd.ToLower().Contains(@"C:\Program Files\".ToLower()))
             {
-               res= cmd.Replace(@"\Program Files\", @"\PROGRA~1\");
+                res = cmd.Replace(@"\Program Files\", @"\PROGRA~1\");
                 return res;
             }
             else
@@ -209,7 +218,6 @@ namespace ServerManger
                 WindowState = FormWindowState.Normal;
             Activate();
         }
-
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (IsServerRuning)
